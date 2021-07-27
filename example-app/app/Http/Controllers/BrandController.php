@@ -49,7 +49,7 @@ class BrandController extends Controller
         $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
         Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
 
-        $last_img = 'image/brand'.$name_gen;
+        $last_img = 'image/brand/'.$name_gen;
 
         Brand::insert([
             'brand_name' => $request->brand_name,
