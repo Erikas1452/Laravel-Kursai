@@ -47,7 +47,7 @@
                                         </td>
                                         <th scope="col">
                                             <a href="{{ url('brand/edit/'.$brand->id) }}" class="btn btn-info">Edit</a>
-                                            <a href=" {{ url('brand/delete/'.$brand->id) }}" class="btn btn-danger">Delete</a>
+                                            <a href=" {{ url('brand/delete/'.$brand->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure that you want to delete the image?');">Delete</a>
                                         </th>
                                     </tr>
                                     @endforeach
