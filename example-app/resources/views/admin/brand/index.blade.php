@@ -46,7 +46,7 @@
                                             @endif
                                         </td>
                                         <th scope="col">
-                                            <a href=" {{ url('brand/edit/'.$brand->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="{{ url('brand/edit/'.$brand->id) }}" class="btn btn-info">Edit</a>
                                             <a href=" {{ url('brand/delete/'.$brand->id) }}" class="btn btn-danger">Delete</a>
                                         </th>
                                     </tr>
