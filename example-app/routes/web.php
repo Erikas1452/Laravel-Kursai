@@ -65,7 +65,12 @@ Route::post('/multi/add', [BrandController::class, 'StoreImg'])->name('store.ima
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();
-    $users = DB::table('users')->get();
+    // $users = DB::table('users')->get();
 
-    return view('dashboard',compact('users'));
+//Admin Routes
+Route::get('/home/slider', [HomeController::class, 'HomeSlider'])->name('home.slider');
+Route::get('/add/slider', [HomeController::class, 'AddSlider'])->name('add.slider');
+Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('store.slider');
+
+    return view('admin.index');
 })->name('dashboard');
