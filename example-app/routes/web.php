@@ -97,3 +97,17 @@ Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
 //Portfolio Routes
 Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
+
+// Amdin Contact Page Route 
+Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
+Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
+Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
+Route::get('/contact/edit/{id}', [ContactController::class, 'Edit']);
+Route::post('/contact/update/{id}', [ContactController::class, 'Update']);
+Route::get('/contact/delete/{id}', [ContactController::class, 'Delete']);
+Route::get('/admin/message', [ContactController::class, 'AdminMessage'])->name('admin.message');
+Route::get('/message/delete/{id}', [ContactController::class, 'DeleteMessage']);
+
+//Home Contact Page Route
+Route::get('/contanct', [ContactController::class, 'Contact'])->name('contact');
+Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
