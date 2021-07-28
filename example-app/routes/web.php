@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ChangePass;
 
 use App\Models\Multipic;
 /*
@@ -111,3 +112,12 @@ Route::get('/message/delete/{id}', [ContactController::class, 'DeleteMessage']);
 //Home Contact Page Route
 Route::get('/contanct', [ContactController::class, 'Contact'])->name('contact');
 Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
+
+
+/// Chanage Password and user Profile Route 
+Route::get('/user/password', [ChangePass::class, 'CPassword'])->name('change.password');
+Route::post('/password/update', [ChangePass::class, 'UpdatePassword'])->name('password.update');
+
+// User Profile 
+Route::get('/user/profile', [ChangePass::class, 'PUpdate'])->name('profile.update');
+Route::post('/user/profile/update', [ChangePass::class, 'UpdateProfile'])->name('update.user.profile');
