@@ -6,6 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-        This is just home page {{'HI: '. Auth::user()->name}}
+        This is just home page
     </div>
 </x-app-layout>
