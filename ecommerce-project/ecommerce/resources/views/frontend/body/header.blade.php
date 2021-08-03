@@ -32,11 +32,15 @@
                   <li><a href="#">GBP</a></li>
                 </ul>
               </li>
-              <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
+              <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
+                @if(session()->get('language') == 'hindi') भाषा: हिन्दी @else Language @endif
+                </span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">English</a></li>
-                  <li><a href="#">French</a></li>
-                  <li><a href="#">German</a></li>
+                  @if(session()->get('language') == 'hindi')
+                  <li><a href="{{ route('english.language') }}">English</a></li>
+                  @else
+                  <li><a href="{{ route('hindi.language') }}">Hindi</a></li>
+                  @endif
                 </ul>
               </li>
             </ul>
