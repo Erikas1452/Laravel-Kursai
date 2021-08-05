@@ -97,8 +97,7 @@
                                         <div class="single-product-gallery-item" id="slide{{ $img->id }}">
                                             <a data-lightbox="image-1" data-title="Gallery"
                                                 href="{{ asset($img->photo_name) }}">
-                                                <img class="img-responsive" alt=""
-                                                    src="{{ asset($img->photo_name) }}"
+                                                <img class="img-responsive" alt="" src="{{ asset($img->photo_name) }}"
                                                     data-echo="{{ asset($img->photo_name) }}" />
                                             </a>
                                         </div><!-- /.single-product-gallery-item -->
@@ -127,7 +126,7 @@
                         </div><!-- /.gallery-holder -->
                         <div class='col-sm-6 col-md-7 product-info-block'>
                             <div class="product-info">
-                                <h1 class="name">
+                                <h1 class="name" id="pname">
                                     @if (session()->get('language') == 'hindi')
                                     {{ $product->product_name_hin }} @else {{ $product->product_name_en }}
                                     @endif
@@ -211,7 +210,7 @@
 
                                             <label class="info-title control-label">Choose Color <span> </span></label>
                                             <select class="form-control unicase-form-control selectpicker"
-                                                style="display: none;">
+                                                style="display: none;" id="color">
                                                 <option selected="" disabled="">--Choose Color--</option>
                                                 @foreach ($product_color_en as $color)
                                                     <option value="{{ $color }}">{{ ucwords($color) }}
@@ -226,16 +225,19 @@
                                     <div class="col-sm-6">
 
                                         <div class="form-group">
+                                            @if($product->product_size_en == null)
 
+                                            @else
                                             <label class="info-title control-label">Choose Size <span> </span></label>
                                             <select class="form-control unicase-form-control selectpicker"
-                                                style="display: none;">
+                                                style="display: none;" id="size">
                                                 <option selected="" disabled="">--Choose Size--</option>
                                                 @foreach ($product_size_en as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @endif
 
                                         </div> <!-- // end form group -->
 
@@ -261,14 +263,18 @@
                                                         <div class="arrow minus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-desc"></i></span></div>
                                                     </div>
-                                                    <input type="text" value="1">
+                                                    <input type="text" id="qty" value="1" min="1">
                                                 </div>
                                             </div>
                                         </div>
 
+                                        <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
+
                                         <div class="col-sm-7">
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary">
+                                                <i class="fa fa-shopping-cart inner-right-vs"></i>
+                                                ADD TO CART
+                                            </button>
                                         </div>
 
 
@@ -477,7 +483,8 @@
                                     <div class="product">
                                         <div class="product-image">
                                             <div class="image">
-                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
                                                     <img src="{{ asset($product->product_thambnail) }}" alt="">
                                                 </a>
                                             </div><!-- /.image -->
@@ -490,11 +497,12 @@
                                         <div class="product-info text-left">
 
                                             <h3 class="name">
-                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
                                                     @if (session()->get('language') == 'hindi')
-                                                    {{ $product->product_name_hin }}
+                                                        {{ $product->product_name_hin }}
                                                     @else
-                                                    {{ $product->product_name_en }}
+                                                        {{ $product->product_name_en }}
                                                     @endif
                                                 </a>
                                             </h3>
