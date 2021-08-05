@@ -242,7 +242,7 @@
         }
         //Modal Scripts end
 
-        //Add To cart
+        //Cart scripts
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
@@ -287,6 +287,8 @@
         }
     </script>
 
+    {{-- Mini Cart Functions --}}
+
     <script type="text/javascript">
         function miniCart() {
             $.ajax({
@@ -300,7 +302,7 @@
                     $('#cartQty').text(response.cartQty)
 
                     var miniCart = ""
-                    
+
                     $.each(response.carts, function(key, value) {
                         miniCart += `<div class="cart-item product-summary">
                     <div class="row">
@@ -327,36 +329,69 @@
 
         miniCart();
 
-        function miniCartRemove(rowId){
-        $.ajax({
-            type: 'GET',
-            url: '/minicart/product-remove/'+rowId,
-            dataType:'json',
-            success:function(data){
-            miniCart();
-             //Message 
-                const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-                      icon: 'success',
-                      showConfirmButton: false,
-                      timer: 3000
+        function miniCartRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/minicart/product-remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    miniCart();
+                    //Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
                     })
-                if ($.isEmptyObject(data.error)) {
-                    Toast.fire({
-                        type: 'success',
-                        title: data.success
-                    })
-                }else{
-                    Toast.fire({
-                        type: 'error',
-                        title: data.error
-                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
+    </script>
 
+    {{-- Wishlist Functions --}}
+
+    <script type="text/javascript">
+        function addToWishList(product_id) {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishlist/" + product_id,
+                success: function(data) {
+                    //Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                }
+            })
+        }
     </script>
 
 </body>
