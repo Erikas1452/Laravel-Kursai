@@ -109,7 +109,8 @@ class IndexController extends Controller
 	}
 
 	public function TagWiseProduct($tag){
-		$products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hin',$tag)->orderBy('id','DESC')->get();
+		// $products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hin',$tag)->orderBy('id','DESC')->get(); Simple
+		$products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hin',$tag)->orderBy('id','DESC')->paginate(3); //Paginated
 		$categories = Category::orderBy('category_name_en','ASC')->get();
 		return view('frontend.tags.tags_view',compact('products','categories'));
 	}
