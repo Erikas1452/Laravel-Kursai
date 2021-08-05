@@ -1078,7 +1078,7 @@ Home Easy Online Shop
                                                 <div class="products">
                                                     <div class="product">
                                                         <div class="product-image">
-                                                          <div class="image"> <a href="detail.html"><img
+                                                          <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}"><img
                                                             src="{{ asset($product->product_thambnail) }}"
                                                             alt="">
                                                           </a> </div>
@@ -1180,7 +1180,7 @@ Home Easy Online Shop
                                                     <div class="products">
                                                         <div class="product">
                                                             <div class="product-image">
-                                                                <div class="image"> <a href="detail.html"><img
+                                                                <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}"><img
                                                                             src="{{ asset($product->product_thambnail) }}"
                                                                             alt=""></a> </div>
                                                                 <!-- /.image -->
@@ -1203,7 +1203,7 @@ Home Easy Online Shop
                                                             <!-- /.product-image -->
 
                                                             <div class="product-info text-left">
-                                                                <h3 class="name"><a href="detail.html">
+                                                                <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}">
                                                                         @if (session()->get('language') == 'hindi')
                                                                         {{ $product->product_name_hin }} @else
                                                                             {{ $product->product_name_en }} @endif
