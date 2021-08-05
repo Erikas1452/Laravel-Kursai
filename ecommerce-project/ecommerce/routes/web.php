@@ -153,3 +153,6 @@ Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, '
 
 // Frontend SubSubCategory Route
 Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']);
+
+//Modal Card Data Route (JSON with ajax)
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']); 
