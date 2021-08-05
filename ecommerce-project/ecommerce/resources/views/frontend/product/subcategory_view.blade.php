@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-    Tag Wise Product
+    Sub Category Product
 @endsection
 
 <div class="breadcrumb">
