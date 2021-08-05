@@ -142,7 +142,7 @@
                                 </select>
                            </div> <!--  end form group -->
 
-                           <div class="form-group">
+                           <div class="form-group" id="sizeArea">
                               <label for="exampleFormControlSelect1">Choose Size</label>
                               <select class="form-control" id="exampleFormControlSelect1" name="size">
                                 <option>1</option>
