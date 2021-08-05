@@ -98,7 +98,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                       <span id="pname"> </span>
+                        <strong><span id="pname"></span> </strong>
                      </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -112,7 +112,7 @@
                         <div class="col-md-4">
 
                             <div class="card" style="width: 18rem;">
-                              <img src=" " class="card-img-top" alt="..." style="height: 200px; width: 180px;" id="pimage">
+                              <img src=" " class="card-img-top" alt="..." style="height: 200px; width: 200px;" id="pimage">
                             </div>
 
                         </div><!-- // end col md -->
@@ -120,11 +120,15 @@
                         <div class="col-md-4">
 
                             <ul class="list-group">
-                              <li class="list-group-item">Product Price: <strong id="price"></strong> </li>
-                              <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
-                              <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
-                              <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
-                              <li class="list-group-item">Stock</li>
+                                <li class="list-group-item">Product Price: <strong class="text-danger">$<span id="pprice"></span></strong> </li>
+                                <del id="oldprice">$</del>
+                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">Stock: 
+                                <span class="badge badge-pill badge-success" id="aviable" style="background: green; color: white;"></span> 
+                                <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color: white;"></span>
+                                </li>
                             </ul>
 
                         </div><!-- // end col md -->
@@ -201,6 +205,26 @@
                         $('#sizeArea').show();
                   }
                })
+
+               //Price
+                if (data.product.discount_price == null) {
+                    $('#pprice').text('');
+                    $('#oldprice').text('');
+                    $('#pprice').text(data.product.selling_price);
+                }else{
+                    $('#pprice').text(data.product.discount_price);
+                    $('#oldprice').text(data.product.selling_price);
+                }
+                //Stock
+                if (data.product.product_qty > 0) {
+                    $('#aviable').text('');
+                    $('#stockout').text('');
+                    $('#aviable').text('aviable');
+                }else{
+                    $('#aviable').text('');
+                    $('#stockout').text('');
+                    $('#stockout').text('stockout');
+                }
             }
          })
       }
