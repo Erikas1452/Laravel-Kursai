@@ -175,7 +175,7 @@
     </div>
     <!-- End Add to Cart Modal Window -->
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -285,7 +285,22 @@
                 }
             })
         }
-    </script>
+</script>
+
+<script type="text/javascript">
+
+    function miniCart(){
+       $.ajax({
+           type: 'GET',
+           url: '/product/mini/cart',
+           dataType:'json',
+           success:function(response){
+               console.log(response)
+           }
+       })
+    }
+    
+</script>
 
 </body>
 
