@@ -442,7 +442,7 @@
         function wishlistRemove(id) {
             $.ajax({
                 type: 'GET',
-                url: 'user/wishlist-remove/' + id,
+                url: 'wishlist-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
                     wishlist();
