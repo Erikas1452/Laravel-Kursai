@@ -213,3 +213,6 @@ Route::prefix('shipping')->group(function(){
     Route::post('/state/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
     Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 });
+
+// Coupon Routes (frontend)
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);

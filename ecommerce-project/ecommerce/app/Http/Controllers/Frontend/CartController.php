@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Product;
-use Auth;
 use App\Models\Wishlist;
+use App\Models\Coupon;
+use Auth;
 use Carbon\Carbon;
 
 class CartController extends Controller
@@ -84,5 +86,9 @@ class CartController extends Controller
         }else{
             return response()->json(['error' => 'At First Login Your Account']);
         }
+    }
+
+	public function CouponApply(Request $request){
+
     }
 }

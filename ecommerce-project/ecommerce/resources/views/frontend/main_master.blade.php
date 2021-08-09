@@ -568,16 +568,33 @@
             });
         }
 
-        function cartDecrement(rowId){
+        function cartDecrement(rowId) {
             $.ajax({
-                type:'GET',
-                url: "/cart-decrement/"+rowId,
-                dataType:'json',
-                success:function(data){
+                type: 'GET',
+                url: "/cart-decrement/" + rowId,
+                dataType: 'json',
+                success: function(data) {
                     cart();
                     miniCart();
                 }
             });
+        }
+    </script>
+
+    {{-- Coupons --}}
+
+    <script type="text/javascript">
+        function applyCoupon() {
+            var coupon_name = $('#coupon_name').val();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    coupon_name: coupon_name
+                },
+                url: "{{ url('/coupon-apply') }}",
+                success: function(data) {}
+            })
         }
     </script>
 
