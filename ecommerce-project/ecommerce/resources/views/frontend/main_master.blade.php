@@ -508,7 +508,7 @@
                             </td>
                             
                             <td class="col-md-1 close-btn">
-                                <button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                <button type="submit" class="" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>`
                     });
@@ -519,13 +519,14 @@
 
         cart();
 
-        function wishlistRemove(id) {
+        function cartRemove(id) {
             $.ajax({
                 type: 'GET',
-                url: '/user/wishlist-remove/' + id,
+                url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    wishlist();
+                    cart();
+                    miniCart();
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
