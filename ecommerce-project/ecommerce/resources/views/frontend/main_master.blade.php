@@ -405,7 +405,7 @@
         function wishlist() {
             $.ajax({
                 type: 'GET',
-                url: 'user/get-wishlist-product',
+                url: 'get-wishlist-product',
                 dataType: 'json',
                 success: function(response) {
                     var rows = ""
