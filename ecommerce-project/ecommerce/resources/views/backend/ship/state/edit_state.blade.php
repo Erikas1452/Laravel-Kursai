@@ -19,7 +19,7 @@
                         <div class="box-body">
                             <div class="table-responsive">
 
-                                <form method="post" action="{{ route('state.update',$state->id) }}">
+                                <form method="post" action="{{ route('state.update', $state->id) }}">
                                     @csrf
 
                                     <div class="form-group">
@@ -47,7 +47,8 @@
                                                 @foreach ($district as $dis)
                                                     <option value="{{ $dis->id }}"
                                                         {{ $dis->id == $state->district_id ? 'selected' : '' }}>
-                                                        {{ $dis->district_name }}</option>
+                                                        {{ $dis->district_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('district_id')
