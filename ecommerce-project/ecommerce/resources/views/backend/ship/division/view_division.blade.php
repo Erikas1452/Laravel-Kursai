@@ -31,9 +31,9 @@
                                                 <td> {{ $item->division_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('coupon.edit', $item->id) }}" class="btn btn-info"
+                                                    <a href="{{ route('division.edit', $item->id) }}" class="btn btn-info"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="{{ route('coupon.delete', $item->id) }}"
+                                                    <a href="{{ route('division.delete', $item->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
                                                 </td>
@@ -78,7 +78,7 @@
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
                                     </div>
-                                    
+
                                 </form>
 
                             </div>
