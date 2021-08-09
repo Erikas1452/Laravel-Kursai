@@ -44,8 +44,11 @@
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
 
                 </div>
-                
+
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                    @if(Session::has('coupon'))
+
+                    @else
                     <table class="table">
                         <thead>
                             <tr>
@@ -69,11 +72,12 @@
                             </tr>
                         </tbody><!-- /tbody -->
                     </table><!-- /table -->
+                    @endif
                 </div><!-- /.estimate-ship-tax -->
 
                 <div class="col-md-4 col-sm-12 cart-shopping-total">
                     <table class="table">
-                        <thead>
+                        <thead id="couponCalField">
                             <tr>
                                 <th>
                                     <div class="cart-sub-total">

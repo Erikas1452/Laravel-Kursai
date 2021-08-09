@@ -216,3 +216,4 @@ Route::prefix('shipping')->group(function(){
 
 // Coupon Routes (frontend)
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);

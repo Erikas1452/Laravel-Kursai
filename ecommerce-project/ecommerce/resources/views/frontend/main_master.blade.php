@@ -593,9 +593,79 @@
                     coupon_name: coupon_name
                 },
                 url: "{{ url('/coupon-apply') }}",
-                success: function(data) {}
+                success: function(data) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                }
             })
         }
+
+        function couponCalculation() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/coupon-calculation') }}",
+                dataType: 'json',
+                success: function(data) {
+                    if (data.total) {
+                        $('#couponCalField').html(
+                            `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                        )
+                    } else {
+                        $('#couponCalField').html(
+                            `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                                    </div>
+
+                                    <div class="cart-sub-total">
+                                        Coupon<span class="inner-left-md">$ ${data.coupon_name}</span>
+                                        <button type="submit"><i class="fa fa-times"></i></button> 
+                                    </div>
+
+                                    <div class="cart-sub-total">
+                                        Discount Ammount<span class="inner-left-md">$ ${data.discount_amount}</span>
+                                    </div>
+
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                        )
+                    }
+                }
+            });
+        }
+        couponCalculation();
     </script>
 
 </body>
