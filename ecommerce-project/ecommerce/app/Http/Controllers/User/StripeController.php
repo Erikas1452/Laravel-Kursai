@@ -9,6 +9,8 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 
 class StripeController extends Controller
 {
@@ -22,6 +24,8 @@ class StripeController extends Controller
 
         \Stripe\Stripe::setApiKey('sk_test_51JMqlvBKRcPLY2eVT73sxxbdcqm7OuhWtE7SVX0bPnNFrREPcDglvjsKaixrdgWAqIaQx0ZPTGPlaT13j0Z3MFcA00sU4vF3Lb');
 
+        //creating payment charge
+
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
             'amount' => $total_amount*100,
@@ -30,6 +34,8 @@ class StripeController extends Controller
             'source' => $token,
             'metadata' => ['order_id' => uniqid()],
         ]);
+
+        //Creating order
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
@@ -71,6 +77,17 @@ class StripeController extends Controller
             ]);
         }
 
+        //Sending Email
+        $invoice = Order::findOrFail($order_id);
+        $data = [
+            'invoice_no' => $invoice->invoice_no,
+            'amount' => $total_amount,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+        ];
+        Mail::to($request->email)->send(new OrderMail($data));
+
+
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
@@ -86,6 +103,6 @@ class StripeController extends Controller
 
     }
 
-    
+
 
 }
