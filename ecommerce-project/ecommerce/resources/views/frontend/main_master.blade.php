@@ -530,8 +530,13 @@
                 url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
+
+                    couponCalculation();
                     cart();
                     miniCart();
+                    $('#couponField').show();
+                    $('#coupon_name').val('');
+
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
