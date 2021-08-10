@@ -562,6 +562,7 @@
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
                 }
@@ -574,6 +575,7 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
                 }
@@ -594,6 +596,8 @@
                 },
                 url: "{{ url('/coupon-apply') }}",
                 success: function(data) {
+                    couponCalculation();
+                    $('#couponField').hide();
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -648,7 +652,7 @@
 
                                     <div class="cart-sub-total">
                                         Coupon<span class="inner-left-md">$ ${data.coupon_name}</span>
-                                        <button type="submit"><i class="fa fa-times"></i></button> 
+                                        <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i></button> 
                                     </div>
 
                                     <div class="cart-sub-total">
@@ -666,6 +670,40 @@
             });
         }
         couponCalculation();
+
+
+        function couponRemove() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/coupon-remove') }}",
+                dataType: 'json',
+                success: function(data) {
+                    couponCalculation();
+                    $('#couponField').show();
+                    $('#coupon_name').val('');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                }
+            });
+        }
     </script>
 
 </body>
