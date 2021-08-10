@@ -137,9 +137,6 @@
                                                     name="notes"></textarea>
                                             </div>
 
-                                            <button type="submit"
-                                                class="btn-upper btn btn-primary checkout-page-button">Login</button>
-
                                         </div>
 
                                     </div>
@@ -219,7 +216,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div class="col-md-4">
