@@ -177,6 +177,7 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+    Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
 });
 
 //Cart page Routes
@@ -230,4 +231,6 @@ Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->na
 
 //Payment Routes (Frontend)
 Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+
+//Order Routes in User Profile
 Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
